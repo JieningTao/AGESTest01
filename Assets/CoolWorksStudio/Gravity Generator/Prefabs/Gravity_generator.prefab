@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 452258}
   - component: {fileID: 20560586}
   - component: {fileID: 8245030}
+  - component: {fileID: 4177670804876334153}
   m_Layer: 0
   m_Name: Gravity_generator
   m_TagString: Untagged
@@ -235,6 +236,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!136 &4177670804876334153
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.03
+  m_Height: 2.17
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.96, z: 0}
 --- !u!1 &1420311804991254
 GameObject:
   m_ObjectHideFlags: 0
