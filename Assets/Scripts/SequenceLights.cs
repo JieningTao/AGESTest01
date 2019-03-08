@@ -5,11 +5,11 @@ using UnityEngine;
 public class SequenceLights : MonoBehaviour
 {
     [SerializeField]
-    BoxCollider UnderThisLight;
+    private BoxCollider UnderThisLight;
     [SerializeField]
-    BoxCollider UnderPreviousLight;
+    private BoxCollider UnderPreviousLight;
     [SerializeField]
-    GameObject Spotlight;
+    private GameObject Spotlight;
 
 
 
