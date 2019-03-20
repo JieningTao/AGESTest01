@@ -1,44 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-
-/// <summary>
-/// detects when the player presses the interact button while looking at interactable, if so activats interactable
-/// </summary>
-
-public class InteractWithLookedAtObject : MonoBehaviour
+public class LookedAtInteractiveDisplayText : MonoBehaviour
 {
 
     private IInteractables lookedAtInteractable;
+    private Text displayText;
 
-
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        displayText = GetComponent<Text>();
+        UpdateDisplayText();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateDisplayText()
     {
-        if (Input.GetButtonDown("Interact")&& lookedAtInteractable != null)
-        {
-
-            lookedAtInteractable.InteractWith();
-        }
+        if (lookedAtInteractable != null)
+            displayText.text = lookedAtInteractable.DisplayText;
+        else
+            displayText.text = string.Empty;
     }
-
-
 
     private void OnLookedAtInteractiveChanged(IInteractables NewLookedAtInteractable)
     {
         lookedAtInteractable = NewLookedAtInteractable;
+        UpdateDisplayText();
     }
-
-
 
     #region Event Sub/Unsub
     /// <summary>
@@ -56,7 +45,5 @@ public class InteractWithLookedAtObject : MonoBehaviour
         DetectLookedAtInteractive.LookedAtInteractiveChanged -= OnLookedAtInteractiveChanged;
     }
     #endregion
-
-
 
 }

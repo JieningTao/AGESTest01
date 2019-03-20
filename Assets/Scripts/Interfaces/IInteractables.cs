@@ -6,7 +6,7 @@
 public interface IInteractables 
 {
 
-
+    string DisplayText { get;}
     void InteractWith();
 
 

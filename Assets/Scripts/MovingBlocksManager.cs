@@ -49,19 +49,19 @@ public class MovingBlocksManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Wave();
-        timer++;
+       // Wave();
+       // timer++;
     }
 
 
     private void Wave()
     {
-        
+        //this is a proof of convept test for the moveable blocks.
 
 
 
 
-        if (timer % 20 == 0)
+        if (timer % 20 == 0&& timer<401)
         {
             for (int i = 0; i < 20; i++)
             {

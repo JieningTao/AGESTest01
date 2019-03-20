@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,13 @@ public class DetectLookedAtInteractive : MonoBehaviour
     private Transform RaycastOrigin;
     [SerializeField]
     private float RaycastDistance = 5.0f;
+
     [SerializeField]
     private LayerMask Avoid;
+
+
+    public static event Action<IInteractables> LookedAtInteractiveChanged;
+
 
 
 
@@ -30,25 +36,40 @@ public class DetectLookedAtInteractive : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        LookedAtInteractive = GetLookedAtInteractive();
+    }
+
+    private IInteractables GetLookedAtInteractive()
+    {
+        //returns first Iinteractive hit by raycast, or null if none are found.
+        Debug.DrawRay(RaycastOrigin.position, RaycastOrigin.forward * RaycastDistance, Color.blue);
+
         RaycastHit Hitinfo;
 
-        if (Physics.Raycast(RaycastOrigin.position, RaycastOrigin.forward, out Hitinfo, RaycastDistance,Avoid))
+        if (Physics.Raycast(RaycastOrigin.position, RaycastOrigin.forward, out Hitinfo, RaycastDistance, Avoid))
         {
             //Debug.Log("Player is looking at: "+Hitinfo.collider.gameObject.name);
             if (Hitinfo.collider.gameObject.GetComponent<IInteractables>() != null)
             {
-                lookedAtInteractive = Hitinfo.collider.gameObject.GetComponent<IInteractables>();
+
+                return Hitinfo.collider.gameObject.GetComponent<IInteractables>();
+            }
+            else
+            {
+                return null;
             }
         }
+        else
+        {
+            return null;
+        }
+
+        
 
 
 
-        Debug.DrawRay(RaycastOrigin.position, RaycastOrigin.forward*RaycastDistance,Color.blue);
+        
     }
-
-
-
-
 
     public IInteractables LookedAtInteractive
     {
@@ -58,7 +79,17 @@ public class DetectLookedAtInteractive : MonoBehaviour
         }
         set
         {
-            lookedAtInteractive = value;
+            bool isInteractiveChanges = value != lookedAtInteractive;
+            if (isInteractiveChanges)
+            {
+
+                lookedAtInteractive = value;
+
+                if(LookedAtInteractiveChanged!=null)
+                LookedAtInteractiveChanged.Invoke(lookedAtInteractive);
+            }
+
+
         }
     }
 

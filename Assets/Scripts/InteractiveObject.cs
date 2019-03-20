@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class InteractiveObject : MonoBehaviour, IInteractables
 {
+    [SerializeField]
+    private string displayText = nameof(InteractiveObject);
 
+    public string DisplayText => displayText;
 
     public void InteractWith()
     {
