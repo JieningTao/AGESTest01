@@ -30,8 +30,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3989513147026165447}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18, y: 0, z: -14}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18, y: -1, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -378,11 +378,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae9342ed72a40b4ba2257f7f2ab1fc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.05
-  Rising: 0
-  Moving: 0
-  MaxHeight: 0
-  MinHeight: -5
+  speed: 0.06
+  rising: 0
+  moving: 0
+  maxHeight: 0
+  minHeight: -4.95
+  bounce: 0
 --- !u!65 &3166287744528969390
 BoxCollider:
   m_ObjectHideFlags: 0
