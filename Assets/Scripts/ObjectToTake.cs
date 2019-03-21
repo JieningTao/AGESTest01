@@ -5,10 +5,6 @@ using UnityEngine;
 public class ObjectToTake : InteractiveObject
 {
 
-
-
-
-
     public override void InteractWith()
     {
         base.InteractWith();
@@ -16,6 +12,5 @@ public class ObjectToTake : InteractiveObject
 
         this.gameObject.SetActive(false);
     }
-
 
 }
