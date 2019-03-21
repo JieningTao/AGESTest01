@@ -2,27 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class InteractiveObject : MonoBehaviour, IInteractables
 {
     [SerializeField]
-    private string displayText = nameof(InteractiveObject);
+    protected string displayText = nameof(InteractiveObject);
+
+
+    private AudioSource InteractSound;
 
     public string DisplayText => displayText;
 
-    public void InteractWith()
+    public virtual void InteractWith()
     {
         Debug.Log("Player interacted with: " + gameObject.name);
+        InteractSound.Play();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        InteractSound = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
