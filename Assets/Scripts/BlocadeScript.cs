@@ -44,7 +44,6 @@ public class BlocadeScript : MonoBehaviour
                 B5.GetComponent<BlockMove>().Moving = true;
             }
 
-
             timer++;
         }
     }

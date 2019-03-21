@@ -5,33 +5,20 @@ using UnityEngine;
 
 public class DetectLookedAtInteractive : MonoBehaviour
 {
-
-
     /// <summary>
     /// This class is used as part of interactive objects to detect objects players looking at
     /// </summary>
 
     [SerializeField]
-    private Transform RaycastOrigin;
+    private Transform rayCastOrigin;
     [SerializeField]
-    private float RaycastDistance = 5.0f;
+    private float rayCastDistance = 5.0f;
 
     [SerializeField]
     private LayerMask Avoid;
 
-
     public static event Action<IInteractables> LookedAtInteractiveChanged;
-
-
-
-
     private IInteractables lookedAtInteractive;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
 
     // Update is called once per frame
     void FixedUpdate()
@@ -42,11 +29,11 @@ public class DetectLookedAtInteractive : MonoBehaviour
     private IInteractables GetLookedAtInteractive()
     {
         //returns first Iinteractive hit by raycast, or null if none are found.
-        Debug.DrawRay(RaycastOrigin.position, RaycastOrigin.forward * RaycastDistance, Color.blue);
+        Debug.DrawRay(rayCastOrigin.position, rayCastOrigin.forward * rayCastDistance, Color.blue);
 
         RaycastHit Hitinfo;
 
-        if (Physics.Raycast(RaycastOrigin.position, RaycastOrigin.forward, out Hitinfo, RaycastDistance, Avoid))
+        if (Physics.Raycast(rayCastOrigin.position, rayCastOrigin.forward, out Hitinfo, rayCastDistance, Avoid))
         {
             //Debug.Log("Player is looking at: "+Hitinfo.collider.gameObject.name);
             if (Hitinfo.collider.gameObject.GetComponent<IInteractables>() != null)
@@ -64,11 +51,6 @@ public class DetectLookedAtInteractive : MonoBehaviour
             return null;
         }
 
-        
-
-
-
-        
     }
 
     public IInteractables LookedAtInteractive
@@ -88,8 +70,7 @@ public class DetectLookedAtInteractive : MonoBehaviour
                 if(LookedAtInteractiveChanged!=null)
                 LookedAtInteractiveChanged.Invoke(lookedAtInteractive);
             }
-
-
+            
         }
     }
 

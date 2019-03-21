@@ -12,33 +12,19 @@ public class InteractWithLookedAtObject : MonoBehaviour
 
     private IInteractables lookedAtInteractable;
 
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Interact")&& lookedAtInteractable != null)
         {
-
             lookedAtInteractable.InteractWith();
         }
     }
-
-
 
     private void OnLookedAtInteractiveChanged(IInteractables NewLookedAtInteractable)
     {
         lookedAtInteractable = NewLookedAtInteractable;
     }
-
-
 
     #region Event Sub/Unsub
     /// <summary>
@@ -56,7 +42,5 @@ public class InteractWithLookedAtObject : MonoBehaviour
         DetectLookedAtInteractive.LookedAtInteractiveChanged -= OnLookedAtInteractiveChanged;
     }
     #endregion
-
-
 
 }

@@ -19,7 +19,6 @@ public class ToggleSetActive : InteractiveObject
     public override void InteractWith()
     {
 
-
         if (IsReusable||!hasBeenUsed)
         {
             base.InteractWith();
@@ -30,11 +29,5 @@ public class ToggleSetActive : InteractiveObject
         }
         
     }
-
-
-
-
-
-
 
 }

@@ -5,47 +5,39 @@ using UnityEngine;
 public class BlockMove : MonoBehaviour
 {
     [SerializeField]
-    private float Speed = 5.0f;
+    private float speed = 5.0f;
     [SerializeField]
-    public bool Rising = false;
+    public bool rising = false;
     [SerializeField]
-    public bool Moving = false;
+    public bool moving = false;
     [SerializeField]
-    private float MaxHeight;
+    private float maxHeight;
     [SerializeField]
-    private float MinHeight;
+    private float minHeight;
     [SerializeField]
-    public bool Bounce;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public bool bounce;
     
     void FixedUpdate()
     {
-        if (Bounce)
+        if (bounce)
         {
-            if ((this.transform.position.y >= MaxHeight && Rising)||(this.transform.position.y <= MinHeight && !Rising))
+            if ((this.transform.position.y >= maxHeight && rising)||(this.transform.position.y <= minHeight && !rising))
             {
-                Rising = !Rising;
+                rising = !rising;
             }
         }
 
-        if (Moving)
+        if (moving)
         {
             
-
-            if (Rising && this.transform.position.y < MaxHeight)
+            if (rising && this.transform.position.y < maxHeight)
             {
-                transform.SetPositionAndRotation(transform.position + new Vector3(0, Speed, 0), transform.rotation);
+                transform.SetPositionAndRotation(transform.position + new Vector3(0, speed, 0), transform.rotation);
                 //GetComponent<Rigidbody>().velocity = new Vector3(0, Speed, 0);
             }
-            else if (!Rising && this.transform.position.y > MinHeight)
+            else if (!rising && this.transform.position.y > minHeight)
             {
-                transform.SetPositionAndRotation(transform.position + new Vector3(0, -Speed, 0), transform.rotation);
+                transform.SetPositionAndRotation(transform.position + new Vector3(0, -speed, 0), transform.rotation);
                 //GetComponent<Rigidbody>().velocity = new Vector3(0, Speed, 0);
             }
             else
@@ -53,18 +45,10 @@ public class BlockMove : MonoBehaviour
                 //GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
 
-            
-
         }
         else
         {
             //GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
-        
-    }
-    
-    private void Update()
-    {
-        //this.GetComponent<Rigidbody>().velocity = new Vector3(0, -Speed, 0);
     }
 }
