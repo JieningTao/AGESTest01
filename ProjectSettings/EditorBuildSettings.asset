@@ -5,7 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Main Menu.unity
+    guid: f2e7a99ac8d14cc43800adbd5ddb80f5
+  - enabled: 1
+    path: Assets/Scenes/The Facility.unity
+    guid: c695eb04375db184287101cce061ff77
+  - enabled: 1
+    path: Assets/Scenes/Pond.unity
+    guid: b71c864bfe2b4e241917936fed36a2ed
+  - enabled: 1
+    path: Assets/Scenes/Office.unity
+    guid: 68fe8ad033f6c1645bd9d97204d6f030
+  - enabled: 1
+    path: Assets/Scenes/Lighting.unity
+    guid: c9d6798148c1efa41a7983244ddfe062
   m_configObjects: {}
