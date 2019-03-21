@@ -18,5 +18,4 @@ public class RisingStairs : MonoBehaviour
             stairs.transform.SetPositionAndRotation(stairs.transform.position+new Vector3(0,risingSpeed,0),stairs.transform.rotation);
         }
     }
-
 }

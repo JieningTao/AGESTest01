@@ -12,11 +12,9 @@ public class TitleMenu : MonoBehaviour
     {
         SceneManager.LoadScene(gameSceneName);
     }
-
     public void Exit()
     {
         Debug.Log("Quit");
         Application.Quit();
     }
-
 }

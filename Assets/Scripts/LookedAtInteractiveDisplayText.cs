@@ -33,8 +33,6 @@ public class LookedAtInteractiveDisplayText : MonoBehaviour
     /// <summary>
     /// subs and unsubs from event when object is enabled and disabled.
     /// </summary>
-
-
     private void OnEnable()
     {
         DetectLookedAtInteractive.LookedAtInteractiveChanged += OnLookedAtInteractiveChanged;
