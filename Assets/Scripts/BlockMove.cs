@@ -5,18 +5,18 @@ using UnityEngine;
 public class BlockMove : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 5.0f;
+    public float speed = 5.0f;
     [SerializeField]
     public bool rising = false;
     [SerializeField]
     public bool moving = false;
     [Tooltip("max height that the block can go")]
     [SerializeField]
-    private float maxHeight;
+    public float maxHeight;
     [Tooltip("min height that the block can go")]
     [SerializeField]
-    private float minHeight;
-    [Tooltip("if the block will auto reverse once reaching max or min height, used by wave in manager")]
+    public float minHeight;
+    [Tooltip("if the block will auto reverse once reaching ma")]
     [SerializeField]
     public bool bounce;
     
@@ -32,21 +32,26 @@ public class BlockMove : MonoBehaviour
 
         if (moving)
         {
+            
             if (rising && this.transform.position.y < maxHeight)
             {
                 transform.SetPositionAndRotation(transform.position + new Vector3(0, speed, 0), transform.rotation);
+                //GetComponent<Rigidbody>().velocity = new Vector3(0, Speed, 0);
             }
             else if (!rising && this.transform.position.y > minHeight)
             {
                 transform.SetPositionAndRotation(transform.position + new Vector3(0, -speed, 0), transform.rotation);
+                //GetComponent<Rigidbody>().velocity = new Vector3(0, Speed, 0);
             }
             else
             {
+                //GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
 
         }
         else
         {
+            //GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

@@ -30,18 +30,18 @@ public class BlocadeScript : MonoBehaviour
         if (Open)
         {
             if(timer >=10)
-            B3.GetComponent<BlockMove>().Moving = true;
+            B3.GetComponent<BlockMove>().moving = true;
 
             if (timer >= 50)
             {
-                B2.GetComponent<BlockMove>().Moving = true;
-                B4.GetComponent<BlockMove>().Moving = true;
+                B2.GetComponent<BlockMove>().moving = true;
+                B4.GetComponent<BlockMove>().moving = true;
             }
 
             if (timer >= 90)
             {
-                B1.GetComponent<BlockMove>().Moving = true;
-                B5.GetComponent<BlockMove>().Moving = true;
+                B1.GetComponent<BlockMove>().moving = true;
+                B5.GetComponent<BlockMove>().moving = true;
             }
 
             timer++;
