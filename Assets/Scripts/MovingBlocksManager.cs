@@ -12,22 +12,25 @@ public class MovingBlocksManager : MonoBehaviour
     private int depth = 20;
 
     [SerializeField]
-    private float maxHeight = 6;
+    private float speed = 0.06f;
     [SerializeField]
+    private float maxHeight = 6;
+    [SerializeField] 
     private float minHeight = 0;
 
 
     private GameObject[,] Blocks;
     private float timeExecuted;
-
+    public bool pause;
     private int timer;
     // Start is called before the first frame update
 
 
     private void Awake()
     {
-     Blocks = new GameObject[width, depth];
-     CreateBlocks();
+        Blocks = new GameObject[width, depth];
+        CreateBlocks();
+        SetAllBlocksRise(true);
     }
     void Start()
     {
@@ -43,12 +46,11 @@ public class MovingBlocksManager : MonoBehaviour
             for (int j = 0; j < depth; j++)
             {
                 GameObject BlockClone = (GameObject)Instantiate(block, (new Vector3(1 + (i * 2), 0, 1 + (j * 2)) + transform.position), Quaternion.identity);
+                BlockClone.GetComponent<BlockMove>().speed = speed;
                 BlockClone.GetComponent<BlockMove>().maxHeight = transform.position.y + maxHeight;
                 BlockClone.GetComponent<BlockMove>().minHeight = transform.position.y + minHeight;
                 BlockClone.transform.parent = transform;
                 Blocks[i,j] = BlockClone;
-
-
             }
         }
     }
@@ -64,15 +66,45 @@ public class MovingBlocksManager : MonoBehaviour
         }
     }
 
+    private void SetAllBlocksRise(bool riseToSet)
+    {
+        for (int i = 0; i < 19; i++)
+        {
+            for (int j = 0; j < 20; j++)
+            {
+                Blocks[i, j].GetComponent<BlockMove>().rising = riseToSet;
+            }
+        }
+    }
+    private void SetAllBlocksMove(bool moveToSet)
+    {
+        for (int i = 0; i < 19; i++)
+        {
+            for (int j = 0; j < 20; j++)
+            {
+                Blocks[i, j].GetComponent<BlockMove>().moving = moveToSet;
+            }
+        }
+    }
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
 
 
-
-        Ripple(5,10);
-
-        timer++;
+        if (!pause)
+        {
+            Ripple(9, 15);
+            timer++;
+            if (timer == 50)
+            {
+                pause = true;
+                SetAllBlocksMove(false);
+            }
+                
+        }
+        
     }
 
     private void Wave()
