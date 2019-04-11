@@ -50,6 +50,7 @@ public class MovingBlocksManager : MonoBehaviour
                 BlockClone.GetComponent<BlockMove>().maxHeight = transform.position.y + maxHeight;
                 BlockClone.GetComponent<BlockMove>().minHeight = transform.position.y + minHeight;
                 BlockClone.transform.parent = transform;
+                BlockClone.GetComponent<BlockMove>().coorInGrid = i + "," + j;
                 Blocks[i,j] = BlockClone;
             }
         }
@@ -92,7 +93,28 @@ public class MovingBlocksManager : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (Time.fixedTime == 1)
+        {
 
+            RaisePath(9, 0, 18, 10);
+            /*
+            Blocks[1, 0].GetComponent<BlockMove>().delayTimer = 0;
+            Blocks[1, 0].GetComponent<BlockMove>().moving = true;
+
+            Blocks[2, 0].GetComponent<BlockMove>().delayTimer = 0.1f;
+            Blocks[2, 0].GetComponent<BlockMove>().moving = true;
+
+            Blocks[3, 0].GetComponent<BlockMove>().delayTimer = 0.2f;
+            Blocks[3, 0].GetComponent<BlockMove>().moving = true;
+
+            Blocks[4, 0].GetComponent<BlockMove>().delayTimer = 0.3f;
+            Blocks[4, 0].GetComponent<BlockMove>().moving = true;
+            */
+            //Ripple(0,0);
+        }
+        
+
+        /*
         if (!pause)
         {
             Ripple(9, 15);
@@ -104,7 +126,8 @@ public class MovingBlocksManager : MonoBehaviour
             }
                 
         }
-        
+        */
+
     }
 
     private void Wave()
@@ -120,79 +143,106 @@ public class MovingBlocksManager : MonoBehaviour
         }
     }
 
+    private void RaisePath(int startX,int startY,int DestX,int DestY)
+    {
+        //RaiseLine(false,DestX,startY,DestY,RaiseLine(true, startY, startX, DestX, 0));
+        
+        RaiseLine(true, DestY, startX, DestX, RaiseLine(false, startX, startY, DestY, 0));
+    }
+
+    private float RaiseLine(bool horizontal, int columnRow,  int start , int finish, float delay)
+    {
+        //delay still broken
+        if (horizontal)
+        {
+            if (start < finish)
+            {
+                for (int i = start; i < finish; i++)
+                {
+                    MoveIfExist(i, columnRow, true, delay+(i - start) * 0.3f);
+                    delay += 0.3f;
+                }
+                delay += 0.9f;
+                return delay;
+            }
+            if (start > finish)
+            {
+                for (int i = start; i > finish; i--)
+                {
+                    MoveIfExist(i, columnRow, true, delay + (i - start) * 0.3f);
+                    delay += 0.3f;
+                }
+                delay += 0.9f;
+                return delay;
+            }
+            else
+            {
+                return delay;
+            }
+
+        }
+        else
+        {
+
+            if (start < finish)
+            {
+                for (int i = start; i < finish; i++)
+                {
+                    MoveIfExist(columnRow, i, true, delay + (i - start) * 0.3f);
+                    delay += 0.3f;
+                }
+                delay += 0.9f;
+                return delay;
+            }
+            if (start > finish)
+            {
+                for (int i = start; i > finish; i--)
+                {
+                    MoveIfExist(columnRow, i, true, delay + (i - start) * 0.3f);
+                    delay += 0.3f;
+                }
+                delay += 0.9f;
+                return delay;
+            }
+            else
+            {
+                return delay;
+            }
+        }
+    }
+    
+
     private void Ripple(int x,int y)
     {
-        if (timer % 20 == 0)
+        SetAllBlocksBounce(true);
+        
+        MoveIfExist(x, y, true);
+        for (int h = 0; h< 1000; h++)
         {
-            for(int i = 0; i<(timer / 20)+1;i++)
+            if (h % 20 == 0)
             {
-                MoveIfExist(x, y, true);
 
-                for (int j = 0; j < i; j++)
+
+                for (int i = 0; i < (h / 20) + 1; i++)
                 {
-                    MoveIfExist(x + i - j, y + j, true);
-                    MoveIfExist(x - i + j, y + j, true);
-                    MoveIfExist(x + i - j, y - j, true);
-                    MoveIfExist(x - i + j, y - j, true);
-                }
 
 
-
-                //MoveIfExist(x + i, y, true);
-                MoveIfExist(x, y + i, true);
-                //MoveIfExist(x - i, y, true);
-                MoveIfExist(x, y - i, true);
-
-
-
-
-
-
-
-
-                /*
-                if (timer / 20 > 1)
-                {
                     for (int j = 0; j < i; j++)
                     {
-                        MoveIfExist(x + i, y + j, true);
-                        MoveIfExist(x - i, y + j, true);
-                        MoveIfExist(x - i, y - j, true);
-                        MoveIfExist(x + i, y - j, true);
 
-                        MoveIfExist(x + j, y + i, true);
-                        MoveIfExist(x - j, y + i, true);
-                        MoveIfExist(x - j, y - i, true);
-                        MoveIfExist(x + j, y - i, true);
+                        MoveIfExist(x + i - j, y + j, true, h/ 20);
+                        MoveIfExist(x - i + j, y + j, true, h / 20);
+                        MoveIfExist(x + i - j, y - j, true, h / 20);
+                        MoveIfExist(x - i + j, y - j, true, h / 20);
                     }
 
-                    MoveIfExist(x + i, y + i,true);
-                    MoveIfExist(x - i, y + i, true);
-                    MoveIfExist(x - i, y - i, true);
-                    MoveIfExist(x + i, y - i, true);
+                    //MoveIfExist(x + i, y, true);
+                    MoveIfExist(x, y + i, true, h / 20);
+                    //MoveIfExist(x - i, y, true);
+                    MoveIfExist(x, y - i, true, h / 20);
+
                 }
-                */
             }
-
-
-
-
-
-            /*
-
-            switch (timer/20)
-            {
-                case 0:
-                    MoveIfExist(x, y, true);
-                    break;
-                default:
-                    MoveIfExist(x + timer / 20, y + timer / 20, true);
-                    MoveIfExist(x + timer / 20, y - timer / 20, true);
-                    MoveIfExist(x - timer / 20, y - timer / 20, true);
-                    MoveIfExist(x - timer / 20, y + timer / 20, true);
-                    break;
-            }
-            */
         }
 
 
@@ -203,8 +253,18 @@ public class MovingBlocksManager : MonoBehaviour
 
     private void MoveIfExist(int x,int y,bool moveOrNot)
     {
-        if (x >= 0 && x < width&&y>=0&&y<depth)
+        if (x >= 0 && x < width&&y>=0&&y<depth && Blocks[x, y].GetComponent<BlockMove>().moving != moveOrNot)
             Blocks[x, y].GetComponent<BlockMove>().moving = moveOrNot;
+    }
+
+    private void MoveIfExist(int x, int y, bool moveOrNot,float delay)
+    {
+        if (x >= 0 && x < width && y >= 0 && y < depth&& Blocks[x, y].GetComponent<BlockMove>().moving!=moveOrNot)
+        {
+            Blocks[x, y].GetComponent<BlockMove>().moving = moveOrNot;
+            Blocks[x, y].GetComponent<BlockMove>().delayTimer = delay;
+        }
+            
     }
 
 

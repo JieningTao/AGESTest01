@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class BlockMove : MonoBehaviour
 {
-    [SerializeField]
     public float speed = 5.0f;
-    [SerializeField]
     public bool rising = false;
-    [SerializeField]
     public bool moving = false;
     [Tooltip("max height that the block can go")]
     [SerializeField]
@@ -19,39 +16,41 @@ public class BlockMove : MonoBehaviour
     [Tooltip("if the block will auto reverse once reaching ma")]
     [SerializeField]
     public bool bounce;
-    
+    public float delayTimer;
+    public string coorInGrid;
+
+
+
     void FixedUpdate()
     {
-        if (bounce)
+        if (delayTimer <= 0)
         {
-            if ((this.transform.position.y >= maxHeight && rising)||(this.transform.position.y <= minHeight && !rising))
+            if (bounce)
             {
-                rising = !rising;
+                if ((this.transform.position.y >= maxHeight && rising) || (this.transform.position.y <= minHeight && !rising))
+                {
+                    rising = !rising;
+                }
             }
-        }
 
-        if (moving)
-        {
-            
-            if (rising && this.transform.position.y < maxHeight)
+            if (moving)
             {
-                transform.SetPositionAndRotation(transform.position + new Vector3(0, speed, 0), transform.rotation);
-                //GetComponent<Rigidbody>().velocity = new Vector3(0, Speed, 0);
-            }
-            else if (!rising && this.transform.position.y > minHeight)
-            {
-                transform.SetPositionAndRotation(transform.position + new Vector3(0, -speed, 0), transform.rotation);
-                //GetComponent<Rigidbody>().velocity = new Vector3(0, Speed, 0);
-            }
-            else
-            {
-                //GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                if (rising && this.transform.position.y < maxHeight)
+                {
+                    transform.SetPositionAndRotation(transform.position + new Vector3(0, speed, 0), transform.rotation);
+                }
+                else if (!rising && this.transform.position.y > minHeight)
+                {
+                    transform.SetPositionAndRotation(transform.position + new Vector3(0, -speed, 0), transform.rotation);
+                }
             }
 
         }
         else
         {
-            //GetComponent<Rigidbody>().velocity = Vector3.zero;
+            delayTimer -= Time.deltaTime;
         }
+
     }
 }
