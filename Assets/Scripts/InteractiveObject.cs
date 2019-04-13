@@ -6,13 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class InteractiveObject : MonoBehaviour, IInteractables
 {
+    [Tooltip("This is what the player sees when they look at the object in the world")]
     [SerializeField]
     protected string displayText = nameof(InteractiveObject);
 
 
-    private AudioSource InteractSound;
+    protected AudioSource InteractSound;
 
-    public string DisplayText => displayText;
+    public virtual string DisplayText => displayText;
 
     public virtual void InteractWith()
     {

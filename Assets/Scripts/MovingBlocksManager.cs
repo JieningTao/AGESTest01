@@ -132,7 +132,7 @@ public class MovingBlocksManager : MonoBehaviour
 
     private void Wave()
     {
-
+        //old version, no longer works with delayed block movement
         //this is a proof of convept test for the moveable blocks.
         if (timer % 20 == 0&& timer<width*20)
         {
@@ -152,7 +152,6 @@ public class MovingBlocksManager : MonoBehaviour
 
     private float RaiseLine(bool horizontal, int columnRow,  int start , int finish, float delay)
     {
-        //delay still broken
         if (horizontal)
         {
             if (start < finish)
@@ -160,9 +159,8 @@ public class MovingBlocksManager : MonoBehaviour
                 for (int i = start; i < finish; i++)
                 {
                     MoveIfExist(i, columnRow, true, delay+(i - start) * 0.3f);
-                    delay += 0.3f;
                 }
-                delay += 0.9f;
+                delay = (finish - start) * 0.3f;
                 return delay;
             }
             if (start > finish)
@@ -170,9 +168,8 @@ public class MovingBlocksManager : MonoBehaviour
                 for (int i = start; i > finish; i--)
                 {
                     MoveIfExist(i, columnRow, true, delay + (i - start) * 0.3f);
-                    delay += 0.3f;
                 }
-                delay += 0.9f;
+                delay = (finish - start) * 0.3f;
                 return delay;
             }
             else
@@ -189,9 +186,8 @@ public class MovingBlocksManager : MonoBehaviour
                 for (int i = start; i < finish; i++)
                 {
                     MoveIfExist(columnRow, i, true, delay + (i - start) * 0.3f);
-                    delay += 0.3f;
                 }
-                delay += 0.9f;
+                delay = (finish - start) * 0.3f;
                 return delay;
             }
             if (start > finish)
@@ -199,9 +195,8 @@ public class MovingBlocksManager : MonoBehaviour
                 for (int i = start; i > finish; i--)
                 {
                     MoveIfExist(columnRow, i, true, delay + (i - start) * 0.3f);
-                    delay += 0.3f;
                 }
-                delay += 0.9f;
+                delay = (finish - start) * 0.3f;
                 return delay;
             }
             else
