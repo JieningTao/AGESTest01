@@ -12,6 +12,15 @@ public class InventoryObject : InteractiveObject
     [SerializeField]
     private string objectName = "thing";
 
+    [Tooltip("The description that the player will see when looked at in inventory")]
+    [TextArea(3,8)]
+    [SerializeField]
+    private string description = "This item does not have a discription";
+
+    [Tooltip("the icon of the object in the inventory")]
+    [SerializeField]
+    private Sprite Icon;
+
 
     private new Collider collider;
     private new Renderer renderer;
