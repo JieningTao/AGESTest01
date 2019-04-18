@@ -5,9 +5,6 @@ using UnityEngine;
 public class InventoryObject : InteractiveObject
 {
 
-    // TODO: Add long discription field
-    // TODO: Add icon field
-
     [Tooltip("The name of the object as appeared in the inventory menu")]
     [SerializeField]
     private string objectName = "thing";
@@ -21,7 +18,6 @@ public class InventoryObject : InteractiveObject
     [SerializeField]
     private Sprite icon;
 
-
     private new Collider collider;
     private new Renderer renderer;
 
@@ -29,11 +25,9 @@ public class InventoryObject : InteractiveObject
     public Sprite Icon => icon;
     public string Description => description;
 
-
     public InventoryObject()
     {
         displayText = $"Take {objectName}";
-
     }
 
     private void Start()
@@ -42,9 +36,6 @@ public class InventoryObject : InteractiveObject
         renderer = GetComponent<Renderer>();
     }
 
-
-
-
     /// <summary>
     /// when the pick up object is interacted with,
     /// 1. add to inventory
@@ -52,21 +43,12 @@ public class InventoryObject : InteractiveObject
     /// </summary>
     public override void InteractWith()
     {
-
         base.InteractWith();
         Debug.Log("player picked up: "+this.name);
         PlayerInventory.InventoryObjects.Add(this);
         InventoryMenu.Instance.AddItemToMenu(this);
         collider.enabled = false;
         renderer.enabled = false;
-        
     }
-
-
-
-
-
-
-
 
 }

@@ -52,11 +52,6 @@ public class InventoryMenuItemToggle : MonoBehaviour
         {
             audioSource.Play();
             InventoryMenuItemSelected?.Invoke(linkedObject);
-            
         }
     }
-
-
-
-
 }

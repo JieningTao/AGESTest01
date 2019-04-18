@@ -6,18 +6,21 @@ public class MovingBlocksManager : MonoBehaviour
 {
     [SerializeField]
     GameObject block;
+
     [SerializeField]
     private int width=19;
+
     [SerializeField]
     private int depth = 20;
 
     [SerializeField]
     private float speed = 0.06f;
+
     [SerializeField]
     private float maxHeight = 6;
+
     [SerializeField] 
     private float minHeight = 0;
-
 
     private GameObject[,] Blocks;
     private float timeExecuted;
@@ -25,18 +28,11 @@ public class MovingBlocksManager : MonoBehaviour
     private int timer;
     // Start is called before the first frame update
 
-
     private void Awake()
     {
         Blocks = new GameObject[width, depth];
         CreateBlocks();
         SetAllBlocksRise(true);
-    }
-    void Start()
-    {
-        
-        //SetAllBlocksBounce(true);
-        
     }
 
     private void CreateBlocks()
@@ -79,6 +75,7 @@ public class MovingBlocksManager : MonoBehaviour
             }
         }
     }
+
     private void SetAllBlocksMove(bool moveToSet)
     {
         for (int i = 0; i < 19; i++)
@@ -90,11 +87,9 @@ public class MovingBlocksManager : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-
+        //contains a lot of stuff commented out because is currently being worked on and constantly changing
         if (Time.fixedTime == 1)
         {
 
@@ -147,8 +142,9 @@ public class MovingBlocksManager : MonoBehaviour
 
     private void RaisePath(int startX,int startY,int DestX,int DestY)
     {
+        //raising line Horizontal first 
         //RaiseLine(false,DestX,startY,DestY,RaiseLine(true, startY, startX, DestX, 0));
-        
+        //raising line Vertical first
         RaiseLine(true, DestY, startX, DestX, RaiseLine(false, startX, startY, DestY, 0));
     }
 
@@ -219,10 +215,8 @@ public class MovingBlocksManager : MonoBehaviour
             if (h % 20 == 0)
             {
 
-
                 for (int i = 0; i < (h / 20) + 1; i++)
                 {
-
 
                     for (int j = 0; j < i; j++)
                     {
@@ -242,10 +236,6 @@ public class MovingBlocksManager : MonoBehaviour
             }
         }
 
-
-
-
-
     }
 
     private void MoveIfExist(int x,int y,bool moveOrNot)
@@ -263,6 +253,5 @@ public class MovingBlocksManager : MonoBehaviour
         }
             
     }
-
 
 }

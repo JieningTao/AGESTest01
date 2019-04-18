@@ -38,7 +38,6 @@ public class InventoryMenu : MonoBehaviour
     private static InventoryMenu instance;
     private CanvasGroup myCanvasGorup;
     private AudioSource audioSource;
-    
     private FirstPersonController playerFPSScript;
 
     public static InventoryMenu Instance
@@ -84,10 +83,7 @@ public class InventoryMenu : MonoBehaviour
     private void HandleInput()
     {
         if (Input.GetButtonDown("Toggle Inventory"))
-        {
             ToggleInventoryMenu();
-
-        }
              
     }
 
