@@ -46,11 +46,13 @@ public class MovingBlocksManager : MonoBehaviour
             for (int j = 0; j < depth; j++)
             {
                 GameObject BlockClone = (GameObject)Instantiate(block, (new Vector3(1 + (i * 2), 0, 1 + (j * 2)) + transform.position), Quaternion.identity);
-                BlockClone.GetComponent<BlockMove>().speed = speed;
-                BlockClone.GetComponent<BlockMove>().maxHeight = transform.position.y + maxHeight;
-                BlockClone.GetComponent<BlockMove>().minHeight = transform.position.y + minHeight;
+                BlockMove cloneScript = BlockClone.GetComponent<BlockMove>();
+
+                cloneScript.speed = speed;
+                cloneScript.maxHeight = transform.position.y + maxHeight;
+                cloneScript.minHeight = transform.position.y + minHeight;
                 BlockClone.transform.parent = transform;
-                BlockClone.GetComponent<BlockMove>().coorInGrid = i + "," + j;
+                cloneScript.coorInGrid = i + "," + j;
                 Blocks[i,j] = BlockClone;
             }
         }

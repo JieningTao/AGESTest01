@@ -19,12 +19,15 @@ public class InventoryObject : InteractiveObject
 
     [Tooltip("the icon of the object in the inventory")]
     [SerializeField]
-    private Sprite Icon;
+    private Sprite icon;
 
 
     private new Collider collider;
     private new Renderer renderer;
 
+    public string ObjectName => objectName;
+    public Sprite Icon => icon;
+    public string Description => description;
 
 
     public InventoryObject()
@@ -53,8 +56,10 @@ public class InventoryObject : InteractiveObject
         base.InteractWith();
         Debug.Log("player picked up: "+this.name);
         PlayerInventory.InventoryObjects.Add(this);
+        InventoryMenu.Instance.AddItemToMenu(this);
         collider.enabled = false;
         renderer.enabled = false;
+        
     }
 
 

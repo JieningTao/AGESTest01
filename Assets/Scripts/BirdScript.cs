@@ -133,7 +133,29 @@ public class BirdScript : MonoBehaviour
 
     void LightingUpdate()
     {
+        if (Time.fixedTime == 1)
+            SaidToPlayer.Invoke("Hi, and welcome to...");
 
+        if (Time.fixedTime == 3)
+            SaidToPlayer.Invoke("Where'd you go?");
+
+        if (Time.fixedTime == 6.5)
+            SaidToPlayer.Invoke("Oh crap.");
+
+        if (Time.fixedTime == 10)
+            SaidToPlayer.Invoke("I think I just lost you.");
+
+        if (Time.fixedTime == 14)
+            SaidToPlayer.Invoke("Don't panic, just follow my voice.");
+
+        if (Time.fixedTime == 16)
+            SaidToPlayer.Invoke("I knew the random spawn location thing was a pain in the tail.");
+
+        if (Time.fixedTime == 20)
+            SaidToPlayer.Invoke("It's ok, i'm sure you can find me.");
+
+        if (Time.fixedTime == 22)
+            SaidToPlayer.Invoke("I hope.");
     }
 
 
@@ -142,17 +164,25 @@ public class BirdScript : MonoBehaviour
         eventStartTime = Time.fixedTime;
         if (pointMessage == "Player met Crow")
             scriptLoaded = "FirstEncounter";
+
     }
 
+    private void FoundCrowInLighting()
+    {
+        if (Time.fixedTime - eventStartTime == 0.5f)
+            SaidToPlayer.Invoke("Oh there you are.");
+    }
 
     private void FirstEncounter()
     {
-        if (Time.fixedTime - eventStartTime == 0.1f)
-            SaidToPlayer.Invoke("Oh...         ");
+
 
         if (Time.fixedTime - eventStartTime == 1f)
+        {
+            SaidToPlayer.Invoke("Oh...         ");
             WorkPanels.gameObject.SetActive(false);
-
+        }
+            
         if (Time.fixedTime - eventStartTime == 4)
             SaidToPlayer.Invoke("You...");
 
@@ -177,13 +207,19 @@ public class BirdScript : MonoBehaviour
         if (Time.fixedTime - eventStartTime == 18.5)
             SaidToPlayer.Invoke("Try typing.");
 
-        if (Time.fixedTime - eventStartTime == 20)
+        if (Time.fixedTime - eventStartTime == 21)
             SaidToPlayer.Invoke("Oh yeah, I didn't Implement the speech system yet.");
 
-        if (Time.fixedTime - eventStartTime == 23)
-            SaidToPlayer.Invoke("Well for the time being fell free to poke around a bit, i really need to get this level done.");
+        if (Time.fixedTime - eventStartTime == 24)
+            SaidToPlayer.Invoke("Well the game isn't finished so...");
 
-        if (Time.fixedTime - eventStartTime == 25)
+        if (Time.fixedTime - eventStartTime == 26)
+            SaidToPlayer.Invoke("I mean, I'm not gonna ask you to leave.");
+
+        if (Time.fixedTime - eventStartTime == 28)
+            SaidToPlayer.Invoke("Feel free to take a look around I guess.");
+
+        if (Time.fixedTime - eventStartTime == 30)
             SaidToPlayer.Invoke("I tend to mumble a bit to myself a bit when i work, don't mind me.");
 
         //Debug.Log(Time.fixedTime - eventStartTime);
@@ -227,13 +263,14 @@ public class BirdScript : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Office")
         {
-
+            Gibberish.Add("Who the hell stuck gum to the bottom of this table?");
 
         }
 
         if (SceneManager.GetActiveScene().name == "Lighting")
         {
-
+            Gibberish.Add("Marco");
+            Gibberish.Add("Marco?");
 
         }
     }
