@@ -11,6 +11,7 @@ public class BirdScript : MonoBehaviour
     private GameObject WorkPanels;
     private string scriptLoaded;
     public static event Action<string> SaidToPlayer;
+    public static event Action<string,string> CrowCommand;
     private float eventStartTime;
     private List<string> Gibberish = new List<string>();
 

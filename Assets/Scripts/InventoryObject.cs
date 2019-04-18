@@ -20,6 +20,7 @@ public class InventoryObject : InteractiveObject
 
     private new Collider collider;
     private new Renderer renderer;
+    private Renderer[] childrenrenders;
 
     public string ObjectName => objectName;
     public Sprite Icon => icon;
@@ -34,6 +35,7 @@ public class InventoryObject : InteractiveObject
     {
         collider = GetComponent<Collider>();
         renderer = GetComponent<Renderer>();
+        childrenrenders = GetComponentsInChildren<Renderer>();
     }
 
     /// <summary>
@@ -48,7 +50,15 @@ public class InventoryObject : InteractiveObject
         PlayerInventory.InventoryObjects.Add(this);
         InventoryMenu.Instance.AddItemToMenu(this);
         collider.enabled = false;
-        renderer.enabled = false;
-    }
+        if (renderer != null)
+            renderer.enabled = false;
+        else
+        {
+            foreach (Renderer r in childrenrenders)
+            {
+                r.enabled = false;
+            }
 
+        }
+    }
 }
