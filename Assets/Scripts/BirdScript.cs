@@ -144,6 +144,12 @@ public class BirdScript : MonoBehaviour
 
         if (Time.fixedTime == 22)
             SaidToPlayer.Invoke("I hope.");
+
+        if (Time.fixedTime == 26)
+        {
+            eventStartTime = Time.fixedTime;
+            scriptLoaded = "Mumble";
+        }
     }
 
     private void PlayerProceededTo(string pointMessage)
