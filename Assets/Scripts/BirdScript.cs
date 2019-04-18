@@ -6,16 +6,13 @@ using UnityEngine;
 
 public class BirdScript : MonoBehaviour
 {
-
-
+    [Tooltip("A reference to the crow's work panels")]
     [SerializeField]
     private GameObject WorkPanels;
     private string scriptLoaded;
     public static event Action<string> SaidToPlayer;
     private float eventStartTime;
     private List<string> Gibberish = new List<string>();
-    // Start is called before the first frame update
-
 
     void Awake()
     {
@@ -27,7 +24,6 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         switch (scriptLoaded)
         {
             case "The Facility":
@@ -48,14 +44,7 @@ public class BirdScript : MonoBehaviour
             case "Mumble":
                 JibberishMumbule();
                 break;
-
-
-
-
         }
-
-        //Debug.Log(Time.fixedTime);
-        
     }
 
     void FacilityUpdate()
@@ -65,8 +54,7 @@ public class BirdScript : MonoBehaviour
         {
             WorkPanels.gameObject.SetActive(true);
             SaidToPlayer.Invoke("That looks okay.");
-        }
-            
+        } 
 
         if (Time.fixedTime == 3)
             SaidToPlayer.Invoke("At least it doesn't look that bad.");
@@ -117,7 +105,6 @@ public class BirdScript : MonoBehaviour
             SaidToPlayer.Invoke("Look around for a bit, I have some backstage work to get done here.");
         }
             
-
         if (Time.fixedTime == 26)
         {
             eventStartTime = Time.fixedTime;
@@ -158,13 +145,11 @@ public class BirdScript : MonoBehaviour
             SaidToPlayer.Invoke("I hope.");
     }
 
-
     private void PlayerProceededTo(string pointMessage)
     {
         eventStartTime = Time.fixedTime;
         if (pointMessage == "Player met Crow")
             scriptLoaded = "FirstEncounter";
-
     }
 
     private void FoundCrowInLighting()
@@ -175,7 +160,6 @@ public class BirdScript : MonoBehaviour
 
     private void FirstEncounter()
     {
-
 
         if (Time.fixedTime - eventStartTime == 1f)
         {
@@ -232,7 +216,6 @@ public class BirdScript : MonoBehaviour
             SaidToPlayer.Invoke( Gibberish[UnityEngine.Random.Range(0, Gibberish.Count - 1)]);
         }
     }
-
     private void setupGibberish()
     {
         Gibberish.Add("Hummmm......");
@@ -251,7 +234,6 @@ public class BirdScript : MonoBehaviour
             Gibberish.Add("Should the walls be white? or more grayish?");
             Gibberish.Add("That antenna is really out of place.");
             Gibberish.Add("I need to talk to that art team about that");
-
         }
 
         if (SceneManager.GetActiveScene().name == "Pond")
@@ -271,10 +253,8 @@ public class BirdScript : MonoBehaviour
         {
             Gibberish.Add("Marco");
             Gibberish.Add("Marco?");
-
         }
     }
-
 
     #region Event Sub/Unsub
     /// <summary>

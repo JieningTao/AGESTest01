@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class BlockMove : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public bool rising = false;
-    public bool moving = false;
     [Tooltip("max height that the block can go")]
     [SerializeField]
     public float maxHeight;
+
     [Tooltip("min height that the block can go")]
     [SerializeField]
     public float minHeight;
+
     [Tooltip("if the block will auto reverse once reaching ma")]
     [SerializeField]
     public bool bounce;
+
+    public float speed = 5.0f;
+    public bool rising = false;
+    public bool moving = false;
     public float delayTimer;
     public string coorInGrid;
-
-
 
     void FixedUpdate()
     {

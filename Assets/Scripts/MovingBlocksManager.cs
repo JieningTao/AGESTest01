@@ -92,7 +92,6 @@ public class MovingBlocksManager : MonoBehaviour
         //contains a lot of stuff commented out because is currently being worked on and constantly changing
         if (Time.fixedTime == 1)
         {
-
             RaisePath(9, 0, 18, 10);
             /*
             Blocks[1, 0].GetComponent<BlockMove>().delayTimer = 0;

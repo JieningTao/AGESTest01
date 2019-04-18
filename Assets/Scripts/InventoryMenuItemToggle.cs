@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class InventoryMenuItemToggle : MonoBehaviour
 {
 
-
     [Tooltip("Image that appears in menu")]
     [SerializeField]
     private Image itemImage;
@@ -15,9 +14,6 @@ public class InventoryMenuItemToggle : MonoBehaviour
     [Tooltip("Name that appears in menu")]
     [SerializeField]
     private Text itemName;
-
-
-
 
     public static event Action<InventoryObject> InventoryMenuItemSelected;
     

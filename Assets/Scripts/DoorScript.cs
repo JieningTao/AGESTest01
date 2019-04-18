@@ -79,11 +79,8 @@ public class DoorScript : InteractiveObject
     /// </summary>
     public override void InteractWith()
     {
-        
-
         if ((IsReusable || !hasBeenUsed) && (!IsLocked || HasKey))
         {
-
             InteractSound.clip = UnlockedSound;
 
             IsOpen = !IsOpen;
@@ -97,7 +94,6 @@ public class DoorScript : InteractiveObject
                 UnlockDoor();
             }
 
-
             if (!IsReusable)
                 displayText = string.Empty;
         }
@@ -106,10 +102,6 @@ public class DoorScript : InteractiveObject
             InteractSound.clip = LockedSound;
 
         }
-
-
-
-
         base.InteractWith();
     }
 
@@ -121,6 +113,4 @@ public class DoorScript : InteractiveObject
             PlayerInventory.InventoryObjects.Remove(keyRequired);
         }
     }
-
-
 }
