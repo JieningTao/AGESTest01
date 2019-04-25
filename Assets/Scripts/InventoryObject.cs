@@ -18,7 +18,7 @@ public class InventoryObject : InteractiveObject
     [SerializeField]
     private Sprite icon;
 
-    private new Collider collider;
+    private new Collider[] colliders;
     private new Renderer renderer;
     private Renderer[] childrenrenders;
 
@@ -34,9 +34,10 @@ public class InventoryObject : InteractiveObject
     private void Start()
     {
         DontDestroyOnLoad(this);
-        collider = GetComponent<Collider>();
+        colliders = GetComponents<Collider>();
         renderer = GetComponent<Renderer>();
         childrenrenders = GetComponentsInChildren<Renderer>();
+        DontDestroyOnLoad(this);
     }
 
     /// <summary>
@@ -51,7 +52,11 @@ public class InventoryObject : InteractiveObject
         PlayerInventory.InventoryObjects.Add(this);
 
         InventoryMenu.Instance.AddItemToMenu(this);
-        collider.enabled = false;
+
+        foreach( Collider C in colliders)
+        C.enabled = false;
+
+
         if (renderer != null)
             renderer.enabled = false;
         else

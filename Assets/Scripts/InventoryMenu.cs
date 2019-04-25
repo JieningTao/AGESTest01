@@ -68,6 +68,17 @@ public class InventoryMenu : MonoBehaviour
         myCanvasGorup.interactable = false;
     }
 
+    private void Start()
+    {
+
+
+        for (int i = 0; i < PlayerInventory.InventoryObjects.Count; i++)
+        {
+            PlayerInventory.InventoryObjects[i].InteractWith();
+        }
+
+    }
+
     public void AddItemToMenu(InventoryObject inventoryItemToAdd)
     {
         GameObject clone =  Instantiate(inventoryMenuItemToglePrefab,toggleScrollList.transform);
@@ -106,6 +117,7 @@ public class InventoryMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             playerFPSScript.enabled = true;//happens after setting cursor so the cursor script FPS controller has don't interfere
             audioSource.Play();
+            
         }
 
     }

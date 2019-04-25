@@ -610,7 +610,7 @@ public class BirdScript : MonoBehaviour
         for (int i = 0; i < 5; i=i)
         {
             SaidToPlayer.Invoke(Gibberish[UnityEngine.Random.Range(0, Gibberish.Count - 1)]);
-            yield return new WaitForSeconds(UnityEngine.Random.Range(5,10));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(10,20));
         }
     }
 
@@ -626,7 +626,7 @@ public class BirdScript : MonoBehaviour
             }
             else
             {
-                SaidToPlayer.Invoke("I'm sorry, I have some more work to do");
+                //SaidToPlayer.Invoke("I'm sorry, I have some more work to do");
             }
                 
         }

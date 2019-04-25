@@ -6,7 +6,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 {
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Inventory ");
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("Inventory");
 
         if (objs.Length > 1)
         {
