@@ -33,6 +33,7 @@ public class InventoryObject : InteractiveObject
 
     private void Start()
     {
+        DontDestroyOnLoad(this);
         collider = GetComponent<Collider>();
         renderer = GetComponent<Renderer>();
         childrenrenders = GetComponentsInChildren<Renderer>();
@@ -48,6 +49,7 @@ public class InventoryObject : InteractiveObject
         base.InteractWith();
         Debug.Log("player picked up: "+this.name);
         PlayerInventory.InventoryObjects.Add(this);
+
         InventoryMenu.Instance.AddItemToMenu(this);
         collider.enabled = false;
         if (renderer != null)
