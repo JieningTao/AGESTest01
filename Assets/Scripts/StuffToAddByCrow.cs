@@ -5,10 +5,22 @@ using UnityEngine;
 public class StuffToAddByCrow : MonoBehaviour
 {
     // Start is called before the first frame update
-  /*
+    [SerializeField]
+    private string commandToSpawn;
+
+    [SerializeField]
+    private GameObject objectToSpawn;
 
 
 
+    private void OnCrowCommand(List<string> commands)
+    {
+        if (commands[0] == commandToSpawn)
+        {
+            objectToSpawn.SetActive(true);
+        }
+
+    }
 
     #region Event Sub/Unsub
     /// <summary>
@@ -16,13 +28,13 @@ public class StuffToAddByCrow : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        PlayerPointDetection.ReachedByPlayer += PlayerProceededTo;
+        BirdScript.CrowCommand+=OnCrowCommand;
     }
 
     private void OnDisable()
     {
-        PlayerPointDetection.ReachedByPlayer -= PlayerProceededTo;
+        BirdScript.CrowCommand -= OnCrowCommand;
     }
     #endregion
-    */
+    
 }

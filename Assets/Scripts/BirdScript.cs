@@ -32,7 +32,8 @@ public class BirdScript : MonoBehaviour
 
     private string sceneLoaded;
     public static event Action<string> SaidToPlayer;
-    public static event Action<string,string> CrowCommand;
+    public static event Action<List<string>> CrowCommand;
+
     private float eventStartTime;
     private List<string> Gibberish = new List<string>();
     private List<AudioClip> Caws = new List<AudioClip>();
@@ -68,6 +69,12 @@ public class BirdScript : MonoBehaviour
         Caws.Add(defaultCaw06);
     }
 
+    private void SimpleCommand(string command)
+    {
+        List<string> commands = new List<string>();
+        commands.Add(command);
+        CrowCommand.Invoke(commands);
+    }
     private AudioClip Caw()
     {
         return Caws[UnityEngine.Random.Range(0, Caws.Count - 1)];
@@ -84,6 +91,8 @@ public class BirdScript : MonoBehaviour
             StartCoroutine(LightingIntro());
         if (sceneLoaded == "Office")
             StartCoroutine(OfficeIntro());
+        if (sceneLoaded == "ReturnFacility")
+            StartCoroutine(ReturnFacilityIntro());
     }
 
     // Update is called once per frame
@@ -170,6 +179,24 @@ public class BirdScript : MonoBehaviour
 
     }
 
+    private IEnumerator ReturnFacilityIntro()
+    {
+        
+        SayToPlayer("And we're back.");
+        yield return new WaitForSeconds(2.5f);
+        SayToPlayer("Let me just...");
+        WorkPanels.gameObject.SetActive(true);
+        yield return new WaitForSeconds(5);
+        SayToPlayer("And there you go.");
+        SimpleCommand("SpawnRadar");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("Found this beauty among other public assets.");
+        yield return new WaitForSeconds(4);
+        SayToPlayer("Really adds something to the room doesn't it?");
+        yield return new WaitForSeconds(3);
+        SimpleCommand("OpenBlocade");
+
+    }
     /*
     void PondIntro()
     {
@@ -542,6 +569,7 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SayToPlayer("1...");
         yield return new WaitForSeconds(1f);
+        Resources.UnloadUnusedAssets();
         SceneManager.LoadScene("ReturnFacility");
     }
 
