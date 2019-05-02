@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lighting.unity
     guid: c9d6798148c1efa41a7983244ddfe062
+  - enabled: 1
+    path: Assets/Scenes/ReturnFacility.unity
+    guid: e8afdcf06af2dc744b1de99c35c91e1e
   m_configObjects: {}

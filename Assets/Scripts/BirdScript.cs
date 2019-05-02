@@ -401,8 +401,21 @@ public class BirdScript : MonoBehaviour
     private IEnumerator StairTrap()
     {
         readyToLeaveScene = true;
-        SayToPlayer("Oh hey!");
-        yield return new WaitForSeconds(1.5f);
+        SayToPlayer("Wait stop!");
+        yield return new WaitForSeconds(1);
+        SayToPlayer("Run!");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("Are you ok?");
+        yield return new WaitForSeconds(2);
+        SayToPlayer("I forgot that was there.");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("My bad.");
+        yield return new WaitForSeconds(2);
+        SayToPlayer("I'll find another way for you.");
+        yield return new WaitForSeconds(2);
+        SayToPlayer("Could've swarn I had a backdoor somewhere near here.");
+        yield return new WaitForSeconds(7);
+
     }
 
 
