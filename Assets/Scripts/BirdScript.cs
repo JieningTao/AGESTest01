@@ -355,7 +355,7 @@ public class BirdScript : MonoBehaviour
             SayToPlayer("It's ok, I'm sure you can find me.");
         yield return new WaitForSeconds(2);
             SayToPlayer("I hope.");
-        readyToLeaveScene = true;
+        
     }
 
 
@@ -400,6 +400,7 @@ public class BirdScript : MonoBehaviour
 
     private IEnumerator StairTrap()
     {
+        readyToLeaveScene = true;
         SayToPlayer("Oh hey!");
         yield return new WaitForSeconds(1.5f);
     }
