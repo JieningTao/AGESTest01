@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class SequenceLights : MonoBehaviour
 {
-    [SerializeField]
-    private BoxCollider underThisLight;
-    [SerializeField]
-    private BoxCollider underPreviousLight;
-    [SerializeField]
-    private GameObject spotlight;
 
-    //this class is a work in progress, very early
 
-    // Start is called before the first frame update
+
+
+    private Light spotlight;
+
     void Start()
     {
-        
+        spotlight = GetComponentInChildren<Light>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+            spotlight.enabled = true;
     }
+
 }
