@@ -18,8 +18,14 @@ public class InventoryObject : InteractiveObject
     [SerializeField]
     private Sprite icon;
 
-    private new Collider collider;
+    [SerializeField]
+    private bool disappearOnCollect = true;
+
+    private new Collider[] colliders;
     private new Renderer renderer;
+    private Renderer[] childrenrenders;
+    private Light[] childrenLights;
+
 
     public string ObjectName => objectName;
     public Sprite Icon => icon;
@@ -32,8 +38,12 @@ public class InventoryObject : InteractiveObject
 
     private void Start()
     {
-        collider = GetComponent<Collider>();
+        childrenLights = GetComponentsInChildren<Light>();
+        DontDestroyOnLoad(this);
+        colliders = GetComponents<Collider>();
         renderer = GetComponent<Renderer>();
+        childrenrenders = GetComponentsInChildren<Renderer>();
+        DontDestroyOnLoad(this);
     }
 
     /// <summary>
@@ -46,9 +56,27 @@ public class InventoryObject : InteractiveObject
         base.InteractWith();
         Debug.Log("player picked up: "+this.name);
         PlayerInventory.InventoryObjects.Add(this);
-        InventoryMenu.Instance.AddItemToMenu(this);
-        collider.enabled = false;
-        renderer.enabled = false;
-    }
 
+        InventoryMenu.Instance.AddItemToMenu(this);
+
+        if (disappearOnCollect)
+        {
+            foreach (Collider C in colliders)
+                C.enabled = false;
+
+            if (renderer != null)
+                renderer.enabled = false;
+            else
+            {
+                foreach (Renderer r in childrenrenders)
+                    r.enabled = false;
+                
+            }
+
+            foreach (Light G in childrenLights)
+            {
+                G.enabled = false;
+            }
+        }
+    }
 }
