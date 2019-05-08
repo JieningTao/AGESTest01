@@ -59,22 +59,18 @@ public class InventoryObject : InteractiveObject
 
         InventoryMenu.Instance.AddItemToMenu(this);
 
-
         if (disappearOnCollect)
         {
             foreach (Collider C in colliders)
                 C.enabled = false;
-
 
             if (renderer != null)
                 renderer.enabled = false;
             else
             {
                 foreach (Renderer r in childrenrenders)
-                {
                     r.enabled = false;
-                }
-
+                
             }
 
             foreach (Light G in childrenLights)
@@ -82,6 +78,5 @@ public class InventoryObject : InteractiveObject
                 G.enabled = false;
             }
         }
-        
     }
 }

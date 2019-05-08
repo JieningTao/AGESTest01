@@ -6,13 +6,15 @@ public class RisingStairs : MonoBehaviour
 {
     [SerializeField]
     private float risingSpeed = 5.0f;
+
     [SerializeField]
     private bool rising = false;
+
     [SerializeField]
     Transform stairs;
+
     [SerializeField]
     private float maxHeight = 37;
-
 
     void FixedUpdate()
     {

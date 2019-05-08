@@ -11,15 +11,10 @@ public class StuffToAddByCrow : MonoBehaviour
     [SerializeField]
     private GameObject objectToSpawn;
 
-
-
     private void OnCrowCommand(List<string> commands)
     {
         if (commands[0] == commandToSpawn)
-        {
             objectToSpawn.SetActive(true);
-        }
-
     }
 
     #region Event Sub/Unsub

@@ -56,8 +56,6 @@ public class BlocadeScript : MonoBehaviour
             OpenBlocade();
     }
 
-
-
     private void OnEnable()
     {
         BirdScript.CrowCommand += OnCrowCommand;

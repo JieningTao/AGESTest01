@@ -7,27 +7,18 @@ public class FollowObject : MonoBehaviour
     [SerializeField]
     private float Hoverheight;
 
-
     private Transform PlayerLocation;
     private InventoryObject thisObjectScript;
-
-
 
     private void Start()
     {
         thisObjectScript = GetComponent<InventoryObject>();
     }
 
-
-
-
-
-
     private void FixedUpdate()
     {
         if (PlayerInventory.InventoryObjects.Contains(thisObjectScript))
         {
-            
             follow();
         }
     }

@@ -5,9 +5,6 @@ using UnityEngine;
 public class SequenceLights : MonoBehaviour
 {
 
-
-
-
     private Light spotlight;
 
     void Start()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
+
     void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Inventory");
@@ -12,8 +13,6 @@ public class DontDestroyOnLoad : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
         DontDestroyOnLoad(this.gameObject);
     }
-
 }
