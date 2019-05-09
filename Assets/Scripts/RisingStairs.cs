@@ -18,7 +18,7 @@ public class RisingStairs : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rising&&stairs.position.y<0)
+        if (rising&&stairs.position.y<maxHeight)
         {
             stairs.transform.SetPositionAndRotation(stairs.transform.position+new Vector3(0,risingSpeed,0),stairs.transform.rotation);
         }

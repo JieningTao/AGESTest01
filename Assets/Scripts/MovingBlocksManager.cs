@@ -26,6 +26,7 @@ public class MovingBlocksManager : MonoBehaviour
     private float timeExecuted;
     public bool pause;
     private int timer;
+    private GameObject player;
     // Start is called before the first frame update
 
     private void Awake()
@@ -251,6 +252,14 @@ public class MovingBlocksManager : MonoBehaviour
             Blocks[x, y].GetComponent<BlockMove>().delayTimer = delay;
         }
             
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            player = other.gameObject;
+        }
     }
 
 }

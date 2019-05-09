@@ -69,10 +69,11 @@ public class BirdScript : MonoBehaviour
         Caws.Add(defaultCaw06);
     }
 
-    private void SimpleCommand(string command)
+    private void SimpleCommand(string command1,string command2)
     {
         List<string> commands = new List<string>();
-        commands.Add(command);
+        commands.Add(command1);
+        commands.Add(command2);
         CrowCommand.Invoke(commands);
     }
     private AudioClip Caw()
@@ -188,13 +189,24 @@ public class BirdScript : MonoBehaviour
         WorkPanels.gameObject.SetActive(true);
         yield return new WaitForSeconds(5);
         SayToPlayer("And there you go.");
-        SimpleCommand("SpawnRadar");
+        SimpleCommand("SpawnRadar","");
         yield return new WaitForSeconds(3);
+        WorkPanels.gameObject.SetActive(false);
         SayToPlayer("Found this beauty among other public assets.");
         yield return new WaitForSeconds(4);
         SayToPlayer("Really adds something to the room doesn't it?");
         yield return new WaitForSeconds(3);
-        SimpleCommand("OpenBlocade");
+        SayToPlayer("I mean it wouldn't really be a facility if it was just an empty room.");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("Totally not because I suck at level design.");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("[Nervous laugh]");
+        yield return new WaitForSeconds(3);
+        
+
+
+
+        SimpleCommand("OpenBlocade","");
 
     }
     /*
@@ -388,7 +400,6 @@ public class BirdScript : MonoBehaviour
 
     private void PlayerProceededTo(string pointMessage)
     {
-        //eventStartTime = Time.fixedTime;
         StopAllCoroutines();
 
         if (pointMessage == "Player met Crow")
@@ -409,6 +420,14 @@ public class BirdScript : MonoBehaviour
         if (pointMessage == "Player first found Crow")
             StartCoroutine(FoundInLighting());
 
+        if (pointMessage == "Player Moved too Final room")
+            StartCoroutine(FinalRoom());
+
+    }
+
+    private IEnumerator FinalRoom()
+    {
+        return null;
     }
 
     private IEnumerator FoundInLighting()
@@ -416,13 +435,6 @@ public class BirdScript : MonoBehaviour
         SayToPlayer("Oh hey!");
         yield return new WaitForSeconds(1.5f);
         SayToPlayer("Over here!");
-        yield return new WaitForSeconds(2);
-        SayToPlayer("In any case, I need to go get some stuff.");
-        yield return new WaitForSeconds(2);
-        SayToPlayer("You're welcome to follow me if you'd like.");
-        yield return new WaitForSeconds(2);
-        SayToPlayer("Come to me when you're ready.");
-        yield return new WaitForSeconds(1.5f);
     }
 
     private IEnumerator StairTrap()
@@ -431,6 +443,10 @@ public class BirdScript : MonoBehaviour
         SayToPlayer("Wait stop!");
         yield return new WaitForSeconds(1);
         SayToPlayer("Run!");
+        yield return new WaitForSeconds(0.6f);
+        SayToPlayer("Run! Run!");
+        yield return new WaitForSeconds(0.6f);
+        SayToPlayer("Run! Run! Run!");
         yield return new WaitForSeconds(3);
         SayToPlayer("Are you ok?");
         yield return new WaitForSeconds(2);
@@ -440,9 +456,18 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         SayToPlayer("I'll find another way for you.");
         yield return new WaitForSeconds(2);
-        SayToPlayer("Could've swarn I had a backdoor somewhere near here.");
+        SayToPlayer("Could've swarn I had a backdoor somewhere near here...");
         yield return new WaitForSeconds(7);
-
+        SayToPlayer("I got it!");
+        yield return new WaitForSeconds(0.5f);
+        SimpleCommand("DarkRoomDoor", "Down");
+        yield return new WaitForSeconds(1);
+        SayToPlayer("But there's no light in that room.");
+        yield return new WaitForSeconds(2);
+        SayToPlayer("Let me see...");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("Here, it's dangerous to go alone, take this.");
+        SimpleCommand("SpawnPrism", "");
     }
 
 
@@ -559,7 +584,7 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
         SayToPlayer("I was totally not getting worried");
         yield return new WaitForSeconds(2f);
-        SayToPlayer("[nervous chuckle]");
+        SayToPlayer("[Nervous chuckle]");
         yield return new WaitForSeconds(2f);
         SayToPlayer("So what say we get back to the facility?");
         yield return new WaitForSeconds(2f);
