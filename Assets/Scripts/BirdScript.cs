@@ -22,9 +22,11 @@ public class BirdScript : MonoBehaviour
     private AudioClip defaultCaw05;
     [SerializeField]
     private AudioClip defaultCaw06;
+    [SerializeField]
+    private AudioSource funnyThingToPlay;
 
     [SerializeField]
-    private AudioClip funnyThingToPlay;
+    private GameObject locationToTeleportTo;
 
 
 
@@ -41,6 +43,7 @@ public class BirdScript : MonoBehaviour
     private bool playerClose;
     private bool readyToLeaveScene;
     private AudioSource crowSpeaker;
+    
 
     void Awake()
     {
@@ -74,6 +77,23 @@ public class BirdScript : MonoBehaviour
         List<string> commands = new List<string>();
         commands.Add(command1);
         commands.Add(command2);
+        CrowCommand.Invoke(commands);
+    }
+    private void SimpleCommand(string command1, string command2, string command3)
+    {
+        List<string> commands = new List<string>();
+        commands.Add(command1);
+        commands.Add(command2);
+        commands.Add(command3);
+        CrowCommand.Invoke(commands);
+    }
+    private void SimpleCommand(string command1, string command2, string command3, string command4)
+    {
+        List<string> commands = new List<string>();
+        commands.Add(command1);
+        commands.Add(command2);
+        commands.Add(command3);
+        commands.Add(command4);
         CrowCommand.Invoke(commands);
     }
     private AudioClip Caw()
@@ -202,11 +222,15 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         SayToPlayer("[Nervous laugh]");
         yield return new WaitForSeconds(3);
-        
-
-
-
+        SayToPlayer("Now that this is out of the way.");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("Or, more like in the way I guess.");
+        yield return new WaitForSeconds(3);
+        SayToPlayer("Let me show you something I've been working on.");
+        yield return new WaitForSeconds(0.5f);
         SimpleCommand("OpenBlocade","");
+        yield return new WaitForSeconds(0.5f);
+        SayToPlayer("through the door behind the radar.");
 
     }
     /*
@@ -314,7 +338,7 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         SayToPlayer("This scene followed me through many games.");
         yield return new WaitForSeconds(3);
-        SayToPlayer("I would just bring it along to waht ever game I was working on.");
+        SayToPlayer("I would just bring it along to what ever game I was working on.");
         yield return new WaitForSeconds(4f);
         SayToPlayer("Just to think.");
         yield return new WaitForSeconds(2);
@@ -322,11 +346,9 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(3);
         SayToPlayer("Or I need a break from all the work.");
         yield return new WaitForSeconds(2.5f);
-        SayToPlayer("Alright, enough about me, let's go to the office.");
+        SayToPlayer("Alright, enough about me, let's head back.");
         yield return new WaitForSeconds(3);
-        SayToPlayer("Not that I have a work office");
-        yield return new WaitForSeconds(3);
-        SayToPlayer("It's some where I use to contact my friends and collegues.");
+        SayToPlayer("This thing I got is a real treat.");
         yield return new WaitForSeconds(3.5f);
         SayToPlayer("Come to me when you're ready.");
         readyToLeaveScene = true;
@@ -427,7 +449,76 @@ public class BirdScript : MonoBehaviour
 
     private IEnumerator FinalRoom()
     {
-        return null;
+        transform.position = locationToTeleportTo.transform.position;
+        transform.rotation = locationToTeleportTo.transform.rotation;
+        SimpleCommand("BlocksParentCrow", "");
+        WorkPanels.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        SayToPlayer("I'm here.");
+        yield return new WaitForSeconds(1f);
+        SayToPlayer("This room is my pride and joy.");
+        yield return new WaitForSeconds(2f);
+        SayToPlayer("My finest twig in the nest.");
+        yield return new WaitForSeconds(2f);
+        SayToPlayer("So what's so special about an empty room you may ask.");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("Well then, watch closely.");
+        WorkPanels.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        funnyThingToPlay.Play();
+        yield return new WaitForSeconds(0.5f);
+        SayToPlayer("No, nope, wait.");
+        yield return new WaitForSeconds(1.5f);
+        SayToPlayer("I fucked up.");
+        yield return new WaitForSeconds(1.5f);
+        SayToPlayer("I fucked up big time.");
+        yield return new WaitForSeconds(2f);
+        SayToPlayer("That's better");
+        funnyThingToPlay.Stop();
+        yield return new WaitForSeconds(1.5f);
+        SayToPlayer("Now.");
+        yield return new WaitForSeconds(2.5f);
+        SayToPlayer("As I was saying");
+        yield return new WaitForSeconds(2f);
+        SayToPlayer("Watch closely.");
+        yield return new WaitForSeconds(1f);
+        SimpleCommand("BlocksRippleCrow","0.5");
+        yield return new WaitForSeconds(2.4f);
+        SimpleCommand("BlocksAllStop", "");
+        SimpleCommand("BlocksAllBounceFalse", "");
+        yield return new WaitForSeconds(0.5f);
+        SayToPlayer("In this room I can show my true power.");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("I buillt this place, and I control it.");
+        yield return new WaitForSeconds(0.5f);
+        SimpleCommand("BlocksStartRipple", "9", "0", "0.1");
+        SimpleCommand("BlocksCrow", "up", "move","nobounce");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("I Can shape this room to my heart's content.");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("Like the waves on an ocean.");
+        yield return new WaitForSeconds(12);
+        SayToPlayer("But sadly...");
+        SimpleCommand("BlocksResetAll","");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("I'm afraid like all good things.");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("This must end.");
+        //SimpleCommand("BlocksPlayerPlatform","");
+        yield return new WaitForSeconds(3.5f);
+        SayToPlayer("I enjoyed this little journey.");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("And of course you're welcome to come back when the game's done.");
+        //SimpleCommand("BlocksPathToPlayer", "9", "16");
+        yield return new WaitForSeconds(5f);
+        SayToPlayer("But I'm afraid i have work to.");
+        yield return new WaitForSeconds(3f);
+        SayToPlayer("So I guess this is goodbye, till we meet again.");
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(0);
+
+
+
     }
 
     private IEnumerator FoundInLighting()
@@ -560,6 +651,9 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
                 SayToPlayer("1...");
         yield return new WaitForSeconds(1f);
+        if(Input.GetButton("Interact"))
+            SceneManager.LoadScene("ReturnFacility");
+        else
                 SceneManager.LoadScene("Pond");
     }
 
@@ -656,13 +750,6 @@ public class BirdScript : MonoBehaviour
         }
     }
     *///Old script that didn't use coroutine, left to provide record.
-
-
-    private void FoundCrowInLighting()
-    {
-        if (ScriptStarted == 0.5f)
-            SayToPlayer("Oh there you are.");
-    }
 
     /*
     private void FirstEncounter()
