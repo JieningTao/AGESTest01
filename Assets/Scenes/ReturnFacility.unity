@@ -2301,7 +2301,7 @@ PrefabInstance:
     - target: {fileID: 1718550065269546765, guid: f4d587fd20c9a024d8397ddd60e7f27b,
         type: 3}
       propertyPath: description
-      value: And where back, where exactly? Crow calls it the facility, so I guess
+      value: And we're back, where exactly? Crow calls it the facility, so I guess
         it's a facility, of some sort.
       objectReference: {fileID: 0}
     - target: {fileID: 1718550065269546765, guid: f4d587fd20c9a024d8397ddd60e7f27b,

@@ -511,7 +511,7 @@ public class BirdScript : MonoBehaviour
         SayToPlayer("And of course you're welcome to come back when the game's done.");
         //SimpleCommand("BlocksPathToPlayer", "9", "16");
         yield return new WaitForSeconds(5f);
-        SayToPlayer("But I'm afraid i have work to.");
+        SayToPlayer("But I'm afraid i have work to get done.");
         yield return new WaitForSeconds(3f);
         SayToPlayer("So I guess this is goodbye, till we meet again.");
         yield return new WaitForSeconds(5f);
